@@ -1,3 +1,6 @@
+#This Python file assumes there are three branches for a business--in Portland, Or; New York, NY; and London, UK--and uses Python's
+#datetime module to see if they are open at present.  Pytz could have been used, but this is a way of using code to avoid Pytz.
+
 import datetime
 
 #Establish the local time based on user's system.  And adjust for time diffs.
