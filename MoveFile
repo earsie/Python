@@ -1,0 +1,76 @@
+import wx
+import glob
+import os, sys
+import time
+import shutil
+
+import sqlite3
+conn=sqlite3.connect('drill69.db')
+
+
+
+class windowClass(wx.Frame):
+    def __init__(self,*args, **kwargs):
+        super(windowClass, self).__init__(*args, **kwargs)
+        self.basicGUI()
+            
+    def basicGUI(self):
+        panel=wx.Panel(self)
+        sizer = wx.GridBagSizer(15, 20)
+        menuBar = wx.MenuBar()
+        fileButton = wx.Menu()
+        exitItem = fileButton.Append (wx.ID_EXIT,'Exit','Exit the program')         
+
+        BrowseButton = wx.Button(panel, label='Click here to choose a folder \n by going through the directory.')        
+        sizer.Add(BrowseButton, pos=(2, 1), span=(1, 3), flag=wx.ALL|wx.EXPAND)
+        BrowseButton.Bind(wx.EVT_BUTTON, self.getBrowsePath)
+   
+        FileCkButton = wx.Button(panel, label='Click here to transfer all pertinent files that have been \n created or modified in the last 24 hours.')        
+        sizer.Add(FileCkButton, pos=(5, 1), span=(1, 3), flag=wx.ALL|wx.EXPAND)
+        FileCkButton.Bind(wx.EVT_BUTTON, self.move)
+
+        ViewButton = wx.Button(panel, label='Click here to view files that have been \n created or modified in the last 24 hours.')
+        sizer.Add(ViewButton, pos=(8, 1), span=(1,3),flag=wx.ALL|wx.EXPAND)
+        FileCkButton.Bind(wx.EVT_BUTTON, self.getViewPath) 
+
+
+            
+        panel.SetSizer(sizer)
+        self.Show(True)
+
+    def getBrowsePath (self, event = None):
+        dlg = wx.DirDialog(None, "Choose a directory:",style=wx.DD_DEFAULT_STYLE | wx.DD_NEW_DIR_BUTTON)
+        wx.DirDialog(None, "Choose a directory:",style=wx.DD_DEFAULT_STYLE | wx.DD_NEW_DIR_BUTTON)               
+        if dlg.ShowModal() == wx.ID_OK:
+            windowClass.inputdirectory = dlg.GetPath()
+            #print(inputdirectory)
+
+    def getViewPath (self, event = None):
+        def viewGUI(self):
+            panel=wx.Panel(self)
+            sizer = wx.GridBagSizer(15, 20)
+            menuBar = wx.MenuBar()
+            fileButton = wx.Menu()
+            exitItem = fileButton.Append (wx.ID_EXIT,'Exit','Exit the program')
+            
+            panel.SetSizer(sizer)
+            self.Show(True)
+            
+
+ 
+       
+
+    def move(*args):
+        from STEP67asfuncfor69 import *
+        wx.MessageBox("The files have been transferred.")
+            
+    def Quit(self,e):
+        self.Close()
+
+def main():
+    app=wx.App()
+    windowClass(None)
+    app.MainLoop()
+
+
+main()
